@@ -9,7 +9,11 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-generic-session": "^1.11.5",
+    "koa-redis": "^3.0.0",
     "koa-router": "^7.1.1",
+    "redis": "^2.7.1",
     "socket.io": "^1.7.3"
   }
 }
