@@ -1,9 +1,8 @@
 //处理接受广播消息的服务端
 const redisStore = require('koa-redis');
-const redis = require('redis');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-const colors = require('colors')
+const colors = require('colors');
 
 const port = 3000;
 
