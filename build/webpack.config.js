@@ -31,10 +31,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: path.resolve(__dirname, '../src/index.html'),
       inject: true
     }),
     new es3ifyPlugin()
-  ],
-  target: 'node'
+  ]
 };

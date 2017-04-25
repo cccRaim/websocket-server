@@ -4,6 +4,8 @@ const Koa = require('koa');
 const redisStore = require('koa-redis');
 const colors = require('colors');
 const app = new Koa();
+const serve = require('koa-static');
+const messageHandle = require('./MessageHandle');
 const port = 8080;
 const store = redisStore({
   // Options specified here
@@ -18,36 +20,12 @@ let readFile = function (fileName) {
   });
 };
 
+app.use(serve('./dist'));
+
 const server = require('http').Server(app.callback());
 
-const io = require('./MessageHandle').init(server);
+const io = messageHandle.init(server);
 
-app.use(async (ctx, next) => {
-  switch (ctx.path) {
-    case '/':
-      await render(ctx, 'index.html');
-      break;
-    case '/app.js':
-      await render(ctx, 'app.js');
-      break;
-    default:
-
-  }
-});
-
-async function render (ctx, src) {
-  let data = await readFile(__dirname + '/dist/' + src).catch((err) => {
-    console.error(err);
-    ctx.status = 500;
-    ctx.body = 'Error loading index.html';
-  });
-
-  if(!data) return;
-
-  ctx.status = 200;
-  ctx.body = data;
-}
-
-app.listen(port);
+server.listen(port);
 
 console.log(`WebSocket服务器已在localhost:${port}上部署`.green);
