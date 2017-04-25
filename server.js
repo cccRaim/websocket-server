@@ -1,4 +1,4 @@
-//处理websocket连接服务端
+//处理WebSocket连接服务端
 const fs = require('fs');
 const Koa = require('koa');
 const redisStore = require('koa-redis');
