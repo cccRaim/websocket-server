@@ -1,51 +1,46 @@
 //处理接受广播消息的服务端
-const session = require('koa-generic-session');
 const redisStore = require('koa-redis');
 const redis = require('redis');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
+const colors = require('colors')
+
+const port = 3000;
 
 const app = new Koa();
-app.keys = ['keys', 'keykeys'];
 const store = redisStore({
   // Options specified here
 });
 
 app.use(bodyParser());
 
-app.use(session({
-  store: store
-}));
-
-app.use(function *() {
-  switch (this.path) {
+app.use(async (ctx, next) => {
+  switch (ctx.path) {
     case '/':
-      this.body = '欢迎访问消息推送系统';
+      ctx.body = '欢迎访问消息推送系统';
       break;
     case '/push':
-      console.log(this.method, this.request.body);
-      if(push(this.request.body)) {
-        this.body = '推送成功';
+      console.log(ctx.method, ctx.request.body);
+      if(push(ctx.request.body)) {
+        ctx.body = '推送成功';
       } else {
-        this.body = '推送失败';
+        ctx.body = '推送失败';
       }
       break;
     case '/get':
-      let _this = this;
-      _this.body = _this.body || '';
-      let getList = get.call(_this);
-      yield getList.then((arr) => {
+      ctx.body = ctx.body || '';
+      await get(ctx).then((arr) => {
         arr.forEach(function (value) {
-          _this.body += `message: ${value.data} event: ${value.event}\n`;
+          ctx.body += `message: ${value.data} event: ${value.event}\n`;
         });
       });
 
       break;
     case '/clear':
-      yield regenerate.call(this);
+      await regenerate(ctx);
       break;
     default:
-      this.body = '404 页面不存在';
+      ctx.body = '404 页面不存在';
       break;
   }
 
@@ -60,18 +55,15 @@ function push(body) {
   return store.client.rpush('queue', JSON.stringify(message));
 }
 
-async function get() {
-  const length = await store.client.llen('queue');
-  const arr = [];
-  for (let i = 0; i < length; i++) {
-    arr.push(JSON.parse(await store.client.lindex('queue', i)));
-  }
-  return arr;
+async function get(ctx) {
+  const result = await store.client.lrange('queue', 0, -1);
+  return result.map((value) => JSON.parse(value));
 }
 
-function *regenerate() {
-  //yield this.regenerateSession();
-  this.body = '队列已清空';
+async function regenerate(ctx) {
+  await store.client.ltrim('queue', 1, 0);
+  ctx.body = '队列已清空';
 }
 
-app.listen(3000);
+app.listen(port);
+console.log(`Server is started at localhost:${port}`.green);
