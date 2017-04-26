@@ -3,7 +3,7 @@ module.exports = {
     port: 3000
   },
   ws: {
-    port: 8000,
+    port: 8001,
     processPort: [
       8001,
     ]
