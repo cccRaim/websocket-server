@@ -20,23 +20,11 @@ app.use(async (ctx, next) => {
       break;
     case '/push':
       console.log(ctx.method, ctx.request.body);
-      if(push(ctx.request.body)) {
+      if(push(ctx)) {
         ctx.body = '推送成功';
       } else {
         ctx.body = '推送失败';
       }
-      break;
-    case '/get':
-      ctx.body = ctx.body || '';
-      await get(ctx).then((arr) => {
-        arr.forEach(function (value) {
-          ctx.body += `message: ${value.data} event: ${value.event}\n`;
-        });
-      });
-
-      break;
-    case '/clear':
-      await regenerate(ctx);
       break;
     default:
       ctx.body = '404 页面不存在';
@@ -45,23 +33,14 @@ app.use(async (ctx, next) => {
 
 });
 
-function push(body) {
+function push(ctx) {
+  const body = ctx.request.body;
   let message = {
     data: body.data || '',
     event: body.event || 'default',
     time: new Date()
   };
-  return store.client.rpush('queue', JSON.stringify(message));
-}
-
-async function get(ctx) {
-  const result = await store.client.lrange('queue', 0, -1);
-  return result.map((value) => JSON.parse(value));
-}
-
-async function regenerate(ctx) {
-  await store.client.ltrim('queue', 1, 0);
-  ctx.body = '队列已清空';
+  return store.client.publish("messages", JSON.stringify(message));
 }
 
 app.listen(port);

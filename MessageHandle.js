@@ -9,11 +9,8 @@ const MessageHandle = {
 
   ioListen() {
     this.io.on('connection', function (socket) {
-      console.log('新的连接已连接到系统');
+      console.log('新的连接已连接到系统' + socket.id);
       socket.emit('news', { hello: 'world' });
-      socket.on('my other event', function (data) {
-        console.log(data);
-      });
     });
   }
 };

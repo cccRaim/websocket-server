@@ -11,20 +11,19 @@ const store = redisStore({
   // Options specified here
 });
 
-let readFile = function (fileName) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(fileName, {'encoding': 'utf8'}, function(error, data) {
-      if (error) reject(error);
-      resolve(data);
-    });
-  });
-};
-
 app.use(serve('./dist'));
 
 const server = require('http').Server(app.callback());
 
 const io = messageHandle.init(server);
+
+store.client.on("message", function (channel, message) {
+  message = JSON.parse(message);
+  console.log("sub channel " + channel + ": " + message.data + " - " + message.event);
+  io.emit(message.event, message);
+});
+store.client.subscribe("messages");
+console.log(`开始处理队列消息`.yellow);
 
 server.listen(port);
 
