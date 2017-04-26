@@ -1,5 +1,5 @@
 const socketIo = require('socket.io');
-
+const colors = require('colors');
 const MessageHandle = {
   init(server) {
     this.io = socketIo(server);
@@ -9,7 +9,7 @@ const MessageHandle = {
 
   ioListen() {
     this.io.on('connection', function (socket) {
-      console.log('新的连接已连接到系统' + socket.id);
+      console.log(`新的连接已连接到系统${socket.id}`.blue);
       socket.emit('news', { hello: 'world' });
     });
   }

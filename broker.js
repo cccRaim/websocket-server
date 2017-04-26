@@ -3,8 +3,9 @@ const redisStore = require('koa-redis');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const colors = require('colors');
+const config = require('./config');
 
-const port = 3000;
+const port = config.broker.port;
 
 const app = new Koa();
 const store = redisStore({
@@ -44,4 +45,4 @@ function push(ctx) {
 }
 
 app.listen(port);
-console.log(`Server is started at localhost:${port}`.green);
+console.log(`推送系统服务器已部署在localhost:${port}`.green);
