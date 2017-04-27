@@ -6,6 +6,9 @@ module.exports = {
     port: 8001,
     processPort: [
       8001,
+      8002,
+      8003,
+      8004,
     ]
   },
   broker: {
