@@ -35,7 +35,7 @@
 	}
 
     server {
-		listen 8001;
+		listen 8088;
 		server_name server.com;
         
 		location / {

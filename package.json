@@ -5,14 +5,16 @@
   "scripts": {
     "start": "node server.js",
     "broker": "node broker.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "test": "websocket-bench -w 2 -a 10 -c 10 -m 2 -v -k -g test.js http://localhost:8088 -o result.log"
   },
   "author": "cccRaim <chen.raim@qq.com>",
   "license": "ISC",
   "dependencies": {
     "koa-static": "^3.0.0",
     "socket.io": "^1.7.3",
-    "socket.io-client": "^1.7.3"
+    "socket.io-client": "^1.7.3",
+    "websocket-bench": "^0.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
