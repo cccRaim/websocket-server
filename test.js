@@ -16,7 +16,7 @@ module.exports = {
    */
   onConnect : function(client, done) {
     console.log(client.id + '开始连接');
-    client.emit('test', { hello: 'world' });
+    //client.emit('test', { hello: 'world' });
     done();
   },
 
