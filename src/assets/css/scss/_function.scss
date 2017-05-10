@@ -1,0 +1,33 @@
+@function getBackgroundColor() {
+  @if($phone-background-color == #fff) {
+    @return rgba(0, 0, 0, 0.1)
+  }
+  @else if($phone-background-color == #000) {
+    @return #000
+  }
+  @else {
+    @return $phone-background-color
+  }
+}
+
+@function getTextColor() {
+  @if($phone-background-color == #000) {
+    @return #fff
+  }
+  @else {
+    @return #000
+  }
+}
+
+@function getIcon($icon) {
+  @if($phone-background-color == #000) {
+    @return "../../assets/img/" + $icon + "-white.png"
+  }
+  @else {
+    @return "../../assets/img/" + $icon + ".png"
+  }
+}
+
+@function px2rem($n) {
+  @return $n * 4 / 100 * 1rem;
+}

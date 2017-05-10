@@ -1,0 +1,104 @@
+@function getMessageHeadColor() {
+  @if($phone-background-color == #000) {
+    @return rgb(183, 183, 183)
+  }
+  @else {
+    @return rgb(246, 246, 246)
+  }
+}
+
+@function getMessageContentColor() {
+  @if($phone-background-color == #000) {
+    @return rgb(171, 171, 171)
+  }
+  @else {
+    @return rgb(240, 240, 240)
+  }
+}
+
+@function getMessageTipColor() {
+  @if($phone-background-color == #000) {
+    @return #4d4d4d
+  }
+  @else {
+    @return #131313
+  }
+}
+
+$message-text-color: #272727;
+$message-head-background-color: rgba(255, 255, 255, 0.71764705882353);
+$message-content-background-color: rgba(255, 255, 255, 0.67058823529412);
+$lock-message-padding-vertical: 1rem;
+$lock-message-padding-horizontal: 1rem;
+$lock-message-content-padding-vertical: .8rem;
+$lock-message-content-padding-horizontal: 1rem;
+$lock-message-head-height: 2.8rem;
+$lock-message-icon-width: 1.8rem;
+$lock-message-icon-height: 1.8rem;
+
+.m-lock-message {
+  position: absolute;
+  top: $status-height + 11.7rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  &>.message-list {
+    margin: 0 .8rem;
+    &>.message {
+      margin-bottom: .7rem;
+      border-radius: .8rem;
+      overflow: hidden;
+      &>.head {
+        position: relative;
+        height: $lock-message-head-height;
+        background-color: getMessageHeadColor();
+        &>.icon {
+          position: absolute;
+          left: $lock-message-padding-horizontal - .2rem;
+          top: 50%;
+          width: 1.8rem;
+          height: 1.8rem;
+          transform: translate(0, -50%);
+          &>img {
+            background-color: #fff;
+            background-clip: content-box;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: .4rem;
+          }
+        }
+        &>.app-name {
+          position: absolute;
+          left: $lock-message-padding-horizontal + $lock-message-icon-width + .4rem;
+          top: 50%;
+          transform: translate(0, -50%);
+          color: $message-text-color;
+          font-size: 1rem;
+        }
+        &>.timeDescribe {
+          position: absolute;
+          right: $lock-message-padding-horizontal;
+          top: 50%;
+          transform: translate(0, -50%);
+          font-size: 1rem;
+        }
+      }
+      &>.content {
+        background-color: getMessageContentColor();
+        padding: $lock-message-content-padding-vertical $lock-message-content-padding-horizontal;
+        &>.body {
+          margin-bottom: .6rem;
+          font-size: 1.12rem;
+        }
+
+        &>.tip {
+          font-size: .8rem;
+          color: getMessageTipColor();
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+$status-bar-padding-vertical: .4rem;
+$status-bar-padding-horizontal: .4rem;
+.m-status-bar {
+  position: relative;
+  height: $status-height;
+  padding: 0 $status-bar-padding-horizontal;
+  .signal {
+    display: inline-block;
+    line-height: $status-height;
+    vertical-align: middle;
+    color: getTextColor();
+    overflow: hidden;
+    .has-signal, .no-signal {
+      float: left;
+      width: .6rem;
+      height: .6rem;
+      margin-right: .2rem;
+      vertical-align: middle;
+      border: 1px solid getTextColor();
+      border-radius: 50%;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .has-signal {
+      background-color: getTextColor();
+    }
+  }
+  .operator {
+    display: inline-block;
+    line-height: $status-height;
+    vertical-align: middle;
+    color: getTextColor();
+    font-size: .8rem;
+    font-weight: 100;
+  }
+  .time {
+    display: inline-block;
+    color: getTextColor();
+  }
+  .lock {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+  }
+  .battery {
+    position: absolute;
+    right: $status-bar-padding-horizontal;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: inline-block;
+    .power-text {
+      position: absolute;
+      left: -.2rem;
+      top: 50%;
+      transform: translate(-100%, -50%);
+      font-size: .8rem;
+      color: getTextColor();
+      font-weight: 100;
+      -webkit-text-size-adjust: none;
+    }
+  }
+  i {
+    display: inline-block;
+  }
+  .icon-lock {
+    width: 2rem;
+    height: 1rem;
+    background: url(getIcon("lock")) no-repeat center;
+    background-size: contain;
+  }
+  .icon-battery {
+    position: relative;
+    width: 2rem;
+    height: 1rem;
+    background: url(getIcon("battery")) no-repeat center;
+    background-size: cover;
+    .power {
+      position: absolute;
+      background-color: getTextColor();
+      top: .2rem;
+      left: .08rem;
+      height: .7rem;
+      width: 1.6rem;
+      border-radius: 1.6px;
+    }
+  }
+}
