@@ -25,9 +25,9 @@
     data () {
       return {
         form: {
-          appName: '',
+          appName: 'wechat',
           message: '',
-          tip: false,
+          tip: true,
         },
         rules: {
           name: [
