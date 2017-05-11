@@ -11,10 +11,13 @@
     </div>
     <div class="battery">
       <span class="power-text">
-        {{power * 100}}%
+        {{(power * 100).toFixed(0)}}%
       </span>
       <i class="icon-battery">
-        <i class="power" :style="{width: 1.6 * power + 'rem'}"></i>
+        <i class="power" :style="{
+          width: 1.6 * power + 'rem',
+          backgroundColor: power > 0.2 ? null : '#c90101'
+        }"></i>
       </i>
     </div>
   </div>
@@ -29,12 +32,20 @@
         power: 0.7,
       }
     },
-    props: [ 'time' ],
-    computed: {
-    },
+    props: ['time'],
+    computed: {},
     mounted: function () {
+      this.powerDown();
     },
     methods: {
+      powerDown() {
+        setTimeout(() => {
+          if(this.power > 0.01) {
+            this.power = (this.power - 0.01).toFixed(2);
+          }
+          this.powerDown();
+        }, 3000);
+      }
     },
     components: {}
   }

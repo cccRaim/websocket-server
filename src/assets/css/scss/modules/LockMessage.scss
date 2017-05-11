@@ -90,11 +90,11 @@ $lock-message-icon-height: 1.8rem;
         background-color: getMessageContentColor();
         padding: $lock-message-content-padding-vertical $lock-message-content-padding-horizontal;
         &>.body {
-          margin-bottom: .6rem;
           font-size: 1.12rem;
         }
 
         &>.tip {
+          margin-top: .6rem;
           font-size: .8rem;
           color: getMessageTipColor();
         }

@@ -6,11 +6,13 @@
           <div class="head">
             <div class="icon"><img :src="newMessage.icon"/></div>
             <div class="app-name">{{newMessage.appName}}</div>
-            <div class="timeDescribe">{{newMessage.timeDescribe}}</div>
+            <div class="timeDescribe">
+              <TimeAgo :since="newMessage.time" :auto-update="30"></TimeAgo>
+            </div>
           </div>
           <div class="content">
             <div class="body">{{newMessage.content}}</div>
-            <div class="tip">{{newMessage.tip}}</div>
+            <div class="tip" v-if="newMessage.tip">{{newMessage.tip}}</div>
           </div>
         </li>
       </ul>
@@ -21,11 +23,13 @@
           <div class="head">
             <div class="icon"><img :src="message.icon"/></div>
             <div class="app-name">{{message.appName}}</div>
-            <div class="timeDescribe">{{message.timeDescribe}}</div>
+            <div class="timeDescribe">
+              <TimeAgo :since="message.time" :auto-update="30"></TimeAgo>
+            </div>
           </div>
           <div class="content">
             <div class="body">{{message.content}}</div>
-            <div class="tip">{{message.tip}}</div>
+            <div class="tip" v-if="message.tip">{{message.tip}}</div>
           </div>
         </li>
       </template>
@@ -45,7 +49,7 @@
           {
             icon: require('@/assets/img/wechat.png'),
             appName: '微信',
-            timeDescribe: '10分钟前',
+            time: (new Date()).getTime(),
             content: '你收到了一条消息',
             tip: '按下以显示更多'
           },
@@ -70,11 +74,12 @@
         let template = {
           icon: require('@/assets/img/wechat.png'),
           appName: '微信',
-          timeDescribe: '10分钟前',
+          time: null,
           content: '你收到了一条消息',
-          tip: '按下以显示更多'
         };
-        return Object.assign(template, message);
+        message = Object.assign(template, message);
+        message.time = (new Date()).getTime();
+        return message;
 
       },
       pushNewMessage(message) {
