@@ -3,10 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource'
 import VueTimeago from 'vue-timeago'
+import Element from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 import '@/assets/css/index.scss'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.use(VueResource);
 
 Vue.use(VueTimeago, {
   name: 'TimeAgo', // component name, `timeago` by default
@@ -16,6 +21,8 @@ Vue.use(VueTimeago, {
     'zh-CN': require('vue-timeago/locales/zh-CN.json')
   }
 });
+
+Vue.use(Element);
 
 /* eslint-disable no-new */
 new Vue({

@@ -67,7 +67,7 @@
         console.log('开始获取推送');
         socket.on('app-message', (data) => {
           console.log(data);
-          this.pushNewMessage(this.handleMessage(JSON.parse(data.data)))
+          this.pushNewMessage(this.handleMessage(data.data));
         });
       },
       handleMessage(message) {

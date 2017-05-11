@@ -9,6 +9,11 @@ export default new Router({
       path: '/',
       name: 'Phone',
       component: require('@/views/Phone')
+    },
+    {
+      path: '/push',
+      name: 'Push',
+      component: require('@/views/Push')
     }
   ]
 })
