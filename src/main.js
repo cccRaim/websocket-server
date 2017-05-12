@@ -28,7 +28,7 @@ Vue.use(Switch);
 Vue.use(Button);
 Vue.use(Option);
 Vue.use(Input);
-Vue.use(Message);
+Vue.prototype.$message = Message
 
 /* eslint-disable no-new */
 new Vue({
