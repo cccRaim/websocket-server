@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import VueTimeago from 'vue-timeago'
-import { Form, Select, Switch, Button } from 'element-ui'
+import { Form, Select, Switch, Button, Option, Input, FormItem } from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import '@/assets/css/index.scss'
 
@@ -22,10 +22,13 @@ Vue.use(VueTimeago, {
   }
 });
 
-Vue.component(Form)
-Vue.component(Select)
-Vue.component(Switch)
-Vue.component(Button)
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Select);
+Vue.use(Switch);
+Vue.use(Button);
+Vue.use(Option);
+Vue.use(Input);
 
 /* eslint-disable no-new */
 new Vue({
