@@ -61,7 +61,7 @@
     },
     methods: {
       startListenMessage() {
-        const socket = io(`ws://server.com:${config.ws.port}`, {
+        const socket = io(`ws://${config.domain}:${config.ws.port}`, {
           "transports": ['websocket', 'polling']
         });
         console.log('开始获取推送');
