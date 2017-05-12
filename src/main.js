@@ -6,7 +6,6 @@ import router from './router'
 import VueResource from 'vue-resource'
 import VueTimeago from 'vue-timeago'
 import { Form, Select, Switch, Button, Option, Input, FormItem } from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
 import '@/assets/css/index.scss'
 
 Vue.config.productionTip = false;
