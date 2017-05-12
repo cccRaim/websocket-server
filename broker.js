@@ -48,5 +48,5 @@ function push(ctx) {
   return store.client.publish("messages", JSON.stringify(message));
 }
 
-app.listen(port);
+app.listen(config.broker.processPort[0]);
 console.log(`推送系统服务器已部署在localhost:${port}`.green);

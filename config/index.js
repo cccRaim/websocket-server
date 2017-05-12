@@ -3,7 +3,10 @@ var path = require('path')
 
 module.exports = {
   server: {
-    port: 3001
+    port: 3000,
+    processPort: [
+      3001,
+    ]
   },
   ws: {
     port: 8088,
@@ -15,7 +18,10 @@ module.exports = {
     ]
   },
   broker: {
-    port: 9001
+    port: 9000,
+    processPort: [
+      9001,
+    ]
   },
   build: {
     env: require('./prod.env'),
