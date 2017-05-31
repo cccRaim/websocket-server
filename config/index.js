@@ -3,12 +3,14 @@ var path = require('path')
 
 module.exports = {
   server: {
+    domain: 'server.com',
     port: 3000,
     processPort: [
       3001,
     ]
   },
   ws: {
+    domain: 'server.com',
     port: 8088,
     processPort: [
       8001,
@@ -18,6 +20,7 @@ module.exports = {
     ]
   },
   broker: {
+    domain: 'broker.com',
     port: 9000,
     processPort: [
       9001,
