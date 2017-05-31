@@ -88,7 +88,7 @@
         this.newMessage = message;
         setTimeout(() => {
           this.newCome = true;
-        }, 10);
+        }, 0);
       }
     },
     components: {}

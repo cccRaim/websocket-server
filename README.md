@@ -1,7 +1,8 @@
 # Nginx配置
+请以实际config为准
 ```
 upstream broker {
-    server 127.0.0.1:9000;
+  server 127.0.0.1:9001;
 }
 
 server {
@@ -14,7 +15,7 @@ server {
 }
 
 upstream serve {
-    server 127.0.0.1:3000;
+  server 127.0.0.1:3001;
 }
 
 server {

@@ -15,5 +15,6 @@ config.ws.processPort.forEach((value) => {
 console.log(`进程已创建完毕`.blue);
 
 app.listen(config.server.processPort[0]);
+console.log(`内部监听localhost:${config.server.processPort[0]}`.blue);
 console.log(`web服务器已经部署在localhost:${config.server.port}`.blue);
 
