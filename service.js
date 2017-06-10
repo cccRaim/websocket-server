@@ -8,6 +8,8 @@ const messageHandle = require('./MessageHandle');
 const port = process.argv[2];
 const store = redisStore({
   // Options specified here
+  host: '10.154.209.125',
+  port: 6379
 });
 
 const server = require('http').Server(app.callback());
