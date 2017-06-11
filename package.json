@@ -7,7 +7,6 @@
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "start": "node server.js",
-    "test": "websocket-bench -w 2 -a 10 -c 10 -v -k -g test.js http://localhost:8088 -o result.log",
     "broker": "node broker.js"
   },
   "author": "cccRaim <chen.raim@qq.com>",

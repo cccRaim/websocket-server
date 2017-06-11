@@ -6,10 +6,11 @@ const colors = require('colors');
 const app = new Koa();
 const messageHandle = require('./MessageHandle');
 const port = process.argv[2];
+const config = require('./config');
 const store = redisStore({
   // Options specified here
-  host: '10.154.209.125',
-  port: 6379
+  host: config.redis.host,
+  port: config.redis.port
 });
 
 const server = require('http').Server(app.callback());

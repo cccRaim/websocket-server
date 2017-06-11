@@ -2,16 +2,18 @@
 const path = require('path')
 
 module.exports = {
-  domain: 'n.craim.net',
+  host: '127.0.0.1',
+  redis: {
+    host: '127.0.0.1', // redis host
+    port: 6379
+  },
   server: {
-    domain: 'n.craim.net',
     port: 3000,
     processPort: [
       3001,
     ]
   },
   ws: {
-    domain: 'n.craim.net',
     port: 8088,
     processPort: [
       8001,
@@ -21,7 +23,6 @@ module.exports = {
     ]
   },
   broker: {
-    domain: 'n.craim.net',
     port: 9000,
     processPort: [
       9001,

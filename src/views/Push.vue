@@ -45,7 +45,7 @@
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$http.post(`http://${config.domain}:${config.broker.port}/push`, {
+            this.$http.post(`http://${config.host}:${config.broker.port}/push`, {
               data: {
                 appName: this.form.appName,
                 content: this.form.message,

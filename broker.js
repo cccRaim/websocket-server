@@ -14,8 +14,8 @@ app.use(cors());
 
 const store = redisStore({
   // Options specified here
-  host: '10.154.209.125',
-  port: 6379
+  host: config.redis.host,
+  port: config.redis.port
 });
 
 app.use(bodyParser());
